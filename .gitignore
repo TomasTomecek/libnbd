@@ -91,6 +91,7 @@ Makefile.in
 /lib/states-run.c
 /lib/states.h
 /lib/unlocked.h
+/libnbd.spec
 /install-sh
 /libtool
 /ltmain.sh
