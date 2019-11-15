@@ -1,0 +1,5 @@
+---
+- name: Provision environment with dependncies to run libnbd's test suite
+  tasks:
+  - command: dnf builddep --spec ./libnbd.spec
+
