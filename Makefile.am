@@ -23,6 +23,8 @@ EXTRA_DIST = \
 	.dir-locals.el \
 	.gitignore \
 	html/pod.css \
+	libnbd.spec \
+	libnbd.spec.in \
 	scripts/git.orderfile \
 	SECURITY \
 	$(NULL)

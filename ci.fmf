@@ -1,0 +1,10 @@
+/libnbd:
+  prepare:
+    how: ansible
+    playbooks:
+    - ci.yaml
+  /upstream:
+    execute:
+      how: shell
+      script:
+      - cd ~/git-source && make && make check
