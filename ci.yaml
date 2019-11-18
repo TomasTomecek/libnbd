@@ -5,6 +5,13 @@
   - name: install all builddeps defined in latest Fedora libnbd
     command: dnf -y builddep libnbd
     become: true
+  - name: install auto* packages
+    dnf:
+      name:
+      - autoconf
+      - automake
+      - libtool
+    become: true
   - name: run autoreconf
     command: autoreconf -i
     args:
