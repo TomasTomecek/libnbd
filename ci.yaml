@@ -11,9 +11,15 @@
     become: true
   - name: run autoreconf
     command: autoreconf -i
+    args:
+      chdir: ~/git-source
   - name: run ./configure
     command: ./configure
+    args:
+      chdir: ~/git-source
   - name: install build deps for libnbd so we can compile it
     command: dnf -y builddep --spec ./libnbd.spec
     become: true
+    args:
+      chdir: ~/git-source
 
