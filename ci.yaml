@@ -2,37 +2,18 @@
 - name: Provision environment with dependncies to run libnbd's test suite
   hosts: all
   tasks:
-  - name: install all builddeps
-    dnf:
-      name:
-      - libtool
-      - autoconf
-      - automake
-      - perl-podlators
-      - fuse
-      - gcc
-      - gcc-c++
-      - gnutls-utils
-      - python3-devel
-      - qemu-img
-      - fuse-devel
-      - glib2-devel
-      - gnutls-devel
-      - libxml2-devel
-      - nbd
-      - ocaml
-      - ocaml-findlib-devel
-      state: present
+  - name: install all builddeps defined in latest Fedora libnbd
+    command: dnf -y builddep libnbd
     become: true
   - name: run autoreconf
     command: autoreconf -i
     args:
       chdir: ~/git-source
   - name: run ./configure
-    command: ./configure
+    command: ./configure --disable-dependency-tracking
     args:
       chdir: ~/git-source
-  - name: install build deps for libnbd so we can compile it
+  - name: install build deps for libnbd defined in upstream spec
     command: dnf -y builddep --spec ./libnbd.spec
     become: true
     args:
