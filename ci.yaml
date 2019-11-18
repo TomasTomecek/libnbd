@@ -2,11 +2,26 @@
 - name: Provision environment with dependncies to run libnbd's test suite
   hosts: all
   tasks:
-  - name: install libtool and autoconf so we can use it
+  - name: install all builddeps
     dnf:
       name:
       - libtool
       - autoconf
+      - automake
+      - perl-podlators
+      - fuse
+      - gcc
+      - gcc-c++
+      - gnutls-utils
+      - python3-devel
+      - qemu-img
+      - fuse-devel
+      - glib2-devel
+      - gnutls-devel
+      - libxml2-devel
+      - nbd
+      - ocaml
+      - ocaml-findlib-devel
       state: present
     become: true
   - name: run autoreconf
