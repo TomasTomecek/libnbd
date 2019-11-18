@@ -2,5 +2,18 @@
 - name: Provision environment with dependncies to run libnbd's test suite
   hosts: all
   tasks:
-  - command: dnf builddep --spec ./libnbd.spec
+  - name: install libtool and autoconf so we can use it
+    dnf:
+      name:
+      - libtool
+      - autoconf
+      state: present
+    become: true
+  - name: run autoreconf
+    command: autoreconf -i
+  - name: run ./configure
+    command: ./configure
+  - name: install build deps for libnbd so we can compile it
+    command: dnf -y builddep --spec ./libnbd.spec
+    become: true
 
